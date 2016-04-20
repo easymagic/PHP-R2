@@ -24,7 +24,6 @@ function __autoload($cls){
 
 
 
- //$obj_app->controller->user->do_me();
 
 //check for command actions here...
  try {
@@ -40,7 +39,6 @@ function __autoload($cls){
 		  }
 		 }
 
-		 //$obj_app->lib->message->message = '';
 		 $obj_app->lib->message->error = false;
 
   } catch (Exception $e) {
@@ -64,10 +62,5 @@ function __autoload($cls){
   } catch (Exception $e) {
   	 echo $e->getMessage();
   } 
-
- //echo $obj_app->lib->view->load('foo');  
- 
- //$obj = new controller();
-
  
 ?>

@@ -4,7 +4,6 @@
 
   require_once("config.php");
 
-//$dbh = new PDO("mysql:host=localhost;dbname=vanbed_db","root","");
 
   class xconnection{
     private static $inst = null;
@@ -31,12 +30,6 @@
       return self::$inst;
     }
 
-    function get_connection(){
-      $this->conn = mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_NAME) or die('Error in db-connection!');
-                       //mysql_select_db(DB_NAME,$db_connection);
-      return $this->conn;
-    }    
-
     function pdo(){
       return $this->pdo_obj;
     }
@@ -45,12 +38,6 @@
 
   }
   
-
-  function get_connection(){
-    $db_connection = mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_NAME) or die('Error in db-connection!');
-                     //mysql_select_db(DB_NAME,$db_connection);
-    return $db_connection;
-  }    
   
   class loader{
     
@@ -75,19 +62,8 @@
         
         require_once($file);
 
-        //echo 'activated<br />';
-
 
          $obj = new $k($this->app);
-
-         //echo 'created<br />';
-        //if ($k == 'netpluspay_model'){
-          //echo $k . $file . 'done';
-        //}
-
-         //if ($k == 'netpluspay_model'){
-          //print_r($obj);
-         //}
          
          $this->data[$k] = $obj;
          return $this->data[$k];
@@ -127,24 +103,6 @@
 
 
   }
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ?>
