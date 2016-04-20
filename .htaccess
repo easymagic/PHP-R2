@@ -1,0 +1,8 @@
+RewriteEngine On
+
+RewriteCond %{HTTP_HOST} ^vanbedng.com$
+RewriteRule (.*) http://www.vanbedng.com/$1 [R=301,L] 
+
+RewriteRule \.(woff|eot|ttf|svg|html|jpg|png|PNG|gif|jpe?g|js|css|pgt|pdf|ico)$ - [L]
+RewriteRule ^(.*)$ r2.php?__q=$1 [L,QSA]
+
