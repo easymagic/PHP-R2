@@ -7,10 +7,10 @@ Folder Structure
 ----------------
 The main appilcation folder is "apps" which consists of 3 main folders and 1 optional
 folder, these folders are:
-1) models
-2) controllers
-3) views
-4) rules (optional)
+1) Models
+2) Controllers
+3) Views
+4) Rules (optional)
 
 1) models : This is where basic business/app-logic is resident, when creating a model , just extend the "model"
 base class as shown below:
