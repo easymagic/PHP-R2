@@ -20,6 +20,7 @@ function __autoload($cls){
  $obj_app->plugin = new loader("plugin",$obj_app);
  $obj_app->lib = new loader("base/libs",$obj_app);
  $obj_app->core = new loader("base/core",$obj_app);
+ $obj_app->rule = new loader("apps/rules",$obj_app);
 
 
 
