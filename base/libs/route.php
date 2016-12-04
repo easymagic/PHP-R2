@@ -26,22 +26,34 @@
           $method = 'index';
         }
         
-        if ($this->app->controller->$controller !== _NULL_){
+        if ($this->app->controller->$controller !== 'null'){
          if (method_exists($this->app->controller->$controller, $method)){
           return call_user_func_array(array($this->app->controller->$controller,$method), $args);
-         }else{
-          throw new Exception(METHOD_MISSING);
+         }else if (method_exists($this->app->controller->$controller, 'map')){
+          //throw new Exception(METHOD_MISSING);
           //return ;
+          array_unshift($args, $method);
+          return call_user_func_array(array($this->app->controller->$controller,'map'), $args);
+         }else{
+          return 'no-map-mtd';
          }
-        }else{
+        }else if ($this->app->controller->url != 'null'){
+          if (method_exists($this->app->controller->url, 'map')){
+            return call_user_func_array(array($this->app->controller->url,'map'), $r); //r=>general argument.
+          }else{
+            return 'no-url-map';
+          }
           //echo $this->app->controller->$controller;
           //echo $controller;
-          throw new Exception(CONTROLLER_MISSING);
+          //throw new Exception(CONTROLLER_MISSING);
          //return ;  
+        }else{
+          return 'no-ctrl';
         }
 
        }else{
-        throw new Exception(NOT_FOUND);
+        return 'ar-nf';
+        //throw new Exception(NOT_FOUND);
         //return ;
        }
 
