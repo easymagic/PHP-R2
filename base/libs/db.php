@@ -16,7 +16,7 @@
 
     function __construct(&$app){
      $this->app =& $app;
-     $this->connection = xconnection::gi()->get_connection(); // get_connection();
+     //$this->connection = xconnection::gi()->get_connection(); // get_connection();
      $this->pdo_ = xconnection::gi()->pdo();//get pdo connection
      //$this->connection = get_connection();
     }
