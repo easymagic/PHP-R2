@@ -28,8 +28,15 @@
      
      $permissions = $_SESSION['permissions']; 
      $seed_check = $this->current_model . '_' . $permission;
+
+     $admin_overall = '*_permission'; //this checks for overall admin access.
+
+     if (isset($permissions[$admin_overall])){
+       return true;
+     }else{
+       return (isset($permissions[$seed_check]));
+     }
      
-     return (isset($permissions[$seed_check]));
 
    }
 
