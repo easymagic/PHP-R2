@@ -25,13 +25,20 @@
    	 if (!isset($_SESSION['permissions'])){
         $_SESSION['permissions'] = array();
    	 }
+
+   	 $general_read_permissions = array('query','get_where');
      
      $permissions = $_SESSION['permissions']; 
      $seed_check = $this->current_model . '_' . $permission;
 
      $admin_overall = '*_permission'; //this checks for overall admin access.
 
+     $read_overall = 'read*_permission'; //this checks for overall read access.
+
+
      if (isset($permissions[$admin_overall])){
+       return true;
+     }else if (in_array($permission, $general_read_permissions) && isset($permissions[$read_overall])){
        return true;
      }else{
        return (isset($permissions[$seed_check]));
