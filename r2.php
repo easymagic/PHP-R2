@@ -15,12 +15,18 @@ function __autoload($cls){
 
  $obj_app = new registry();
 
+ $stored_queries = new external_query();
+
  $obj_app->controller = new loader("apps/controllers",$obj_app);
  $obj_app->model = new loader("apps/models",$obj_app);
  $obj_app->plugin = new loader("plugin",$obj_app);
  $obj_app->lib = new loader("base/libs",$obj_app);
  $obj_app->core = new loader("base/core",$obj_app);
  $obj_app->rule = new loader("apps/rules",$obj_app);
+ $obj_app->startup = new loader("apps/startup",$obj_app);
+
+ $obj_app->sql = $stored_queries;
+
 
 
 
@@ -53,6 +59,8 @@ function __autoload($cls){
 
 //extract the route and execute it ...
 
+ $obj_app->startup->config->init();  //startup called here ...  
+
  $q = $obj_app->lib->request->__q;
  if ($q === _NULL_ || empty($q)){
   $q = DEFAULT_ROUTE;
@@ -63,5 +71,7 @@ function __autoload($cls){
   } catch (Exception $e) {
   	 echo $e->getMessage();
   } 
+
+
  
 ?>
