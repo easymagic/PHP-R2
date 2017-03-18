@@ -15,7 +15,7 @@ function __autoload($cls){
 
  $obj_app = new registry();
 
- $stored_queries = new external_query();
+ //$stored_queries = new external_query();
 
  $obj_app->controller = new loader("apps/controllers",$obj_app);
  $obj_app->model = new loader("apps/models",$obj_app);
@@ -25,11 +25,17 @@ function __autoload($cls){
  $obj_app->rule = new loader("apps/rules",$obj_app);
  $obj_app->startup = new loader("apps/startup",$obj_app);
 
- $obj_app->sql = $stored_queries;
+ //$obj_app->sql = $stored_queries;
 
+ //get use case definition
+ $use_case_domains = scandir('apps/use_cases');
+ $use_case_domains = array_diff($use_case_domains, array('.','..'));
 
+ foreach ($use_case_domains as $k=>$v){
 
+    $obj_app->$v = new loader("apps/use_cases/$v",$obj_app);
 
+ }
 
 
 //check for command actions here...
