@@ -10,14 +10,13 @@ folder, these folders are:<br />
 1) models <br />
 2) controllers <br />
 3) views <br />
-4) usecases
+4) usecases<br />
 
-1) <b>models :</b> This is where basic business/app-logic is resident, when creating a model , just extend the "model"
+<b>models :</b> This is where basic business/app-logic is resident, when creating a model , just extend the "model"
 base class as shown below:
 <br />
 class foo_model extends model{}
-  
-
+ 
 <br />
 You can make a call to the database, but you must specify the database-connection parameters from the config.php
 in the root directory. The database engine is written on top of PDO and has a very simple API for example:
@@ -36,15 +35,13 @@ Other database functions from the db-object include:
 4) delete(table): Deletes records from table generally or using the criteria specified by the "where()"-function defined in
    (2) above.<br />
 
-2) <b>controllers:</b> This is where the interactions are defined between the views and the models or plugins. When creating a controller,
+2)<b>controllers:</b> This is where the interactions are defined between the views and the models or plugins. When creating a controller,
 just extend the "controller" base class as shown below:
-<br />
 class foo_controller extends controller{} 
 <br />
 3) <b>views:</b> This is the directory where your templates or views are defined and re-used. Whatever value you assign
 to the data-array before sending to the load-method of the view , will be extracted and made visible/accessible 
 to that currently loaded/rendered template.
-
 
 N.B:
 ---
