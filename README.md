@@ -10,20 +10,13 @@ folder, these folders are:<br />
 1) models <br />
 2) controllers <br />
 3) views <br />
-4) rules (optional) <br />
+4) usecases
 
 1) <b>models :</b> This is where basic business/app-logic is resident, when creating a model , just extend the "model"
 base class as shown below:
 <br />
-class foo_model extends model{
+class foo_model extends model{}
   
-  /** 
-    
-    App logic goes in here to include database or any other user-defined functions.
-  
-  **/
-
-}
 
 <br />
 You can make a call to the database, but you must specify the database-connection parameters from the config.php
@@ -46,39 +39,8 @@ Other database functions from the db-object include:
 2) <b>controllers:</b> This is where the interactions are defined between the views and the models or plugins. When creating a controller,
 just extend the "controller" base class as shown below:
 <br />
-class foo_controller extends controller{ 
- /** 
-   
-   Its advisable to use naming conventions when defining your models or controller in order to
-   prevent class name collisions. For example if you have a "user_model" as model , then the controller
-   should be just "user" or "user_ctrl".
-   
-   The first method to be called by default in the controller is the index-function.
-  
- **/ 
-  
-  function index(){
-    $data = array();
-    $data['a'] = 'some data';
-    return $this->view->load('home/views',$data); 
-    /** 
-     always return what you are rendering to the screen do not echo, the framework renders to the browser
-     based on returns from the controller
-     the view->load helps to load user-defined views from the views directory , which is illustrated in
-     the view definition given below
-    **/
-  }
-  
-  function some_function(){
-    $data = array();
-    $data['var'] = 'some data';
-    return $this->view->load('views/view_file',$data);
-    
-  }
- 
- 
-}
-
+class foo_controller extends controller{} 
+<br />
 3) <b>views:</b> This is the directory where your templates or views are defined and re-used. Whatever value you assign
 to the data-array before sending to the load-method of the view , will be extracted and made visible/accessible 
 to that currently loaded/rendered template.
@@ -89,5 +51,40 @@ N.B:
 You can change the default route behaviour to whatever route you choose as long as you follow the
 [controller]/[controller_method] convention and this behaviour can be modified from the "config.php"
 file resident in the root-directory.
+<br />
+
+In addition, you can load either of model , controller , usecase, lib or plugin using the following functions available to controllers , models, usecases and libs
+
+<br />
+1) $this->load_model($model_name,[$alias]); <br />
+2) $this->load_controller($controller_name,[$alias]); <br />
+3) $this->load_lib($lib_name,[$alias]); <br />
+4) $this->load_plugin($plugin_name,[$alias]); <br />
+5) $this->load_use_case($package,$use_case_name,[$alias]); <br />
+
+Loading either feature, will dependently inject the feature directly in the calling instance
+and can be directly accessed from the calling instance. <br />
+
+Example:
+<br />
+To load a model called foo_model,
+
+<br />
+$this->load_model('foo_model');
+
+<br />
+$this->foo_model->do_stuff();
+
+<br />
+Its that simple
+<br />
+Though a slight change to loading usecases , a usecase should be enclosed in its own directory
+e.g if we have a usecase for user called user_login, it will be a class called user_login that extends
+model and is enclosed in a folder called user and will be loaded like so:
+<br />
+
+$this->load_use_case('user','user_login');
+<br />
+$this->user_login->do_login_stuff($username,$password);
 
 
