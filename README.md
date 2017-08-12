@@ -43,7 +43,7 @@ class foo_controller extends controller{}
 to the data-array before sending to the load-method of the view , will be extracted and made visible/accessible 
 to that currently loaded/rendered template.
 
-Note:
+<b>Note:</b>
 You can change the default route behaviour to whatever route you choose as long as you follow the
 [controller]/[controller_method] convention and this behaviour can be modified from the "config.php"
 file resident in the root-directory.
